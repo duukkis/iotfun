@@ -3,7 +3,7 @@
 Instructions for setting up Wemos (ESP8266) used MacOS Mojave 10.14.3
 
 # Install Arduino IDE (latest)
-https://www.arduino.cc/en/Main/OldSoftwareReleases#previous
+https://www.arduino.cc/en/Main/Software
 
 # Install Driver for MacOS
 https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers
