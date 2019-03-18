@@ -8,6 +8,8 @@ https://www.arduino.cc/en/Main/Software
 # Install Driver for MacOS
 https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers
 
+*Restart*
+
 On Windows/Linux might work out of the box
 
 # Open Arduino IDE
