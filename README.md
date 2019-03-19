@@ -1,4 +1,4 @@
-# iotfun
+# iot fun
 
 Instructions for setting up Wemos (ESP8266) used MacOS Mojave 10.14.3
 
@@ -33,3 +33,10 @@ File > Examples > ESP8266 > Blink
 Sketch > Upload
 
 And wemos should start blinking
+
+# Examples
+
+Oled - how to set the Oled screen
+Temperature - how to set the temperature meter
+Moisture - how to set soil moisture detector
+Wifi - how to connect to Internet and send some data
