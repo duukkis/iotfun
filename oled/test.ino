@@ -3,14 +3,10 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
  
-// SCL GPIO5
-// SDA GPIO4
+// the driver is for 128x64 screen so the display needs some tweaking
 #define OLED_RESET 0  // GPIO0
 Adafruit_SSD1306 display(OLED_RESET); 
- 
-#define LOGO16_GLCD_HEIGHT 16
-#define LOGO16_GLCD_WIDTH  16
- 
+
 // set up stuff 
 void setup()   {
   Serial.begin(9600);
@@ -27,6 +23,7 @@ void setup()   {
   // text display tests
   display.setTextSize(1);
   display.setTextColor(WHITE);
+ // move cursor 32 pixels right (the driver is for 128 wide)
   display.setCursor(32,20);
   display.println("Hello, world!");
   display.display();
