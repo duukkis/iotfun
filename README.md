@@ -10,7 +10,7 @@ https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vc
 
 *Restart*
 
-On Windows/Linux might work out of the box
+On Windows/Linux things work out of the box
 
 # Open Arduino IDE
 
@@ -40,3 +40,4 @@ Oled - how to set the Oled screen
 Temperature - how to set the temperature meter
 Moisture - how to set soil moisture detector
 Wifi - how to connect to Internet and send some data
+Complete - All of the above bind together
