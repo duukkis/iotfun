@@ -36,8 +36,8 @@ And wemos should start blinking
 
 # Examples
 
-Oled - how to set the Oled screen
-Temperature - how to set the temperature meter
-Moisture - how to set soil moisture detector
-Wifi - how to connect to Internet and send some data
-Complete - All of the above bind together
+- Oled - how to set the Oled screen
+- Temperature - how to set the temperature meter
+- Moisture - how to set soil moisture detector
+- Wifi - how to connect to Internet and send some data
+- Complete - All of the above bind together
