@@ -1,12 +1,10 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
-#include "DHT.h"
-#include <SPI.h>
-#include <Wire.h>
+#include <WEMOS_SHT3X.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
-const String slack_icon_url = ":red_chili:"; // not working yet
+const String slack_icon_url = ":red_chili:";
 const String slack_username = "Chiliplant";
 
 const char* host = "hooks.slack.com";
@@ -16,25 +14,21 @@ const char* webhookUrl = "/services/AAAAAA/BBBBBB/cccccccddddeeee";
 /*
  WIFI CONFIGURATION
  */
-char SSID[] = "SSID";
-char pwd[] = "SSID_PASS";
+// char SSID[] = "SSID";
+// char pwd[] = "PASS";
 
 /*
  * soil moisture stuff
  */
-#define PIN_MOISTURE_VOLTAGE 12     // PIN D6
 #define POST_INTERVAL_SECONDS 10
 // WATER GLASS 195
 // DRY 609 - the dry is 447 when power is connected to D6 (so check the values)
 #define MIN_WETNESS 77
-#define MAX_WETNESS 471
+#define MAX_WETNESS 622
 /*
  * temperature
  */
-#define DHTPIN 13     // what pin we're connected to 13 equals D7
-#define DHTTYPE DHT11   // DHT 11
-
-DHT dht(DHTPIN, DHTTYPE);
+SHT3X sht30(0x45);
 
 /*
  * Oled screen
@@ -58,46 +52,39 @@ void setup() {
   Serial.print("Connected, IP address: ");
   Serial.println(WiFi.localIP());
   // ---------- SOIL MOISTURE
-  pinMode(PIN_MOISTURE_VOLTAGE, OUTPUT); // PIN
   // ---------- AIR TEMPERATURE
-  dht.begin();
+  // shield 
   // ---------- OLED SCREEN
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3C (for the 64x48)
   // init done
   display.display();
 }
 
-int timer = 0;
+// ------------ event fires instantly
+int timer = POST_INTERVAL_SECONDS + 1;
 
 void loop() {
   // ----------- SOIL MOISTURE
   if (timer > POST_INTERVAL_SECONDS){
     // MOISTURE
 
-    // set the soil moisture on
-    digitalWrite(PIN_MOISTURE_VOLTAGE, HIGH); // PIN set power to meter
-    delay(2000); // PIN wait for the meter to start
     timer = 0;
     int val = analogRead(0);
     Serial.println(val);
     Serial.println(calculatePersentage(val));
-    digitalWrite(PIN_MOISTURE_VOLTAGE, LOW); // PIN turn off power to meter
 
     // TEMPERATURE
-
-    float h = dht.readHumidity();
-    // Read temperature as Celsius (the default)
-    float t = dht.readTemperature();
+    sht30.get();
     Serial.print("Humidity: ");
-    Serial.print(h);
+    Serial.print(sht30.humidity);
     Serial.print(" %\t");
     Serial.print("Temperature: ");
-    Serial.print(t);
+    Serial.print(sht30.cTemp);
     Serial.print(" *C ");
     Serial.println();
 
     // SCREEN
-    showTextOnDisplay("M:" + String(calculatePersentage(val)), "T: " + String(t), "H:" + String(h));
+    showTextOnDisplay("M:" + String(calculatePersentage(val)) + "%", "T:" + String(sht30.cTemp) + " C", "H:" + String(sht30.humidity) + " %");
   } else {
     timer++;
   }
@@ -105,7 +92,7 @@ void loop() {
 
 }
 
-// Set cursor to x=33 and y=8 as the driver is for bigger screen
+
 void showTextOnDisplay(String msg, String msg2, String msg3){
   display.clearDisplay();
   // text display tests
