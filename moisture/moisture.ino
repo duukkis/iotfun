@@ -22,7 +22,7 @@ void loop() {
     digitalWrite(DPIN, HIGH); // PIN set power to meter
     delay(3000); // PIN wait for the meter to start
     timer = 0;
-    int val = analogRead(0);
+    int val = analogRead(A0);
     // WATER GLASS 195
     // DRY 609 - the dry is 447 when power is connected to D6 (so check the values)
     Serial.println(val);
