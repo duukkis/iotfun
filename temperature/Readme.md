@@ -1,26 +1,8 @@
 ```
 cd Documents/Arduino/libraries/
-git clone https://github.com/adafruit/Adafruit_Sensor.git
-git clone https://github.com/adafruit/DHT-sensor-library.git
+git clone https://github.com/wemos/WEMOS_SHT3x_Arduino_Library.git
 ```
 
-NOTICE THE PIN NUMBERING:
-
-If temperature sensor is connected to D4 the pin number on Arduino IDE is 2!
-```
-WeMos D1 mini Pin Number  	Arduino IDE Pin Number
-D0 	                                16
-D1 	                                5
-D2 	                                4
-D3 	                                0
-D4 	                                2
-D5 	                                14
-D6 	                                12
-D7 	                                13
-D8 	                                15
-TX 	                                1
-RX 	                                3
-```
 
 The Serial.print prints into serial which in Arduino IDE can be found Tools > Serial Monitor
 
