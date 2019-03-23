@@ -23,7 +23,7 @@ const char* webhookUrl = "/services/AAAAAA/BBBBBB/cccccccddddeeee";
 #define POST_INTERVAL_SECONDS 10
 // WATER GLASS 195
 // DRY 609 - the dry is 447 when power is connected to D6 (so check the values)
-#define MIN_WETNESS 77
+#define MIN_WETNESS 162
 #define MAX_WETNESS 622
 /*
  * temperature
@@ -64,7 +64,6 @@ void setup() {
 int timer = POST_INTERVAL_SECONDS + 1;
 
 void loop() {
-  // ----------- SOIL MOISTURE
   if (timer > POST_INTERVAL_SECONDS){
     // MOISTURE
 
@@ -125,9 +124,10 @@ int calculatePersentage(int moisture){
   } else if (moisture < MIN_WETNESS) {
     return 100;
   } else { // calculate actual persentage
-    moisture = moisture - MIN_WETNESS;
+    float m = float(moisture) - MIN_WETNESS;
+    float scale = MAX_WETNESS - MIN_WETNESS;
     // subtract from 100 cause the scale is upside down
-    return 100 - (((moisture) / (MAX_WETNESS-MIN_WETNESS)) * 100);
+    return 100 - ((m / scale) * 100);
   }
 }
 
