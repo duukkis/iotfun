@@ -41,3 +41,22 @@ And wemos should start blinking
 - Moisture - how to set soil moisture detector
 - Wifi - how to connect to Internet and send some data
 - Complete - All of the above bind together
+
+
+# PIN NUMBERING:
+
+If sensor is connected to D4 the pin number on Arduino IDE is 2!
+```
+WeMos D1 mini Pin Number  	Arduino IDE Pin Number
+D0 	                                16
+D1 	                                5
+D2 	                                4
+D3 	                                0
+D4 	                                2
+D5 	                                14
+D6 	                                12
+D7 	                                13
+D8 	                                15
+TX 	                                1
+RX 	                                3
+```
