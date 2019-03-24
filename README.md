@@ -60,3 +60,7 @@ D8 	                                15
 TX 	                                1
 RX 	                                3
 ```
+
+# Parts
+
+[Parts list](parts.md)
